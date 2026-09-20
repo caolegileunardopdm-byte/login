@@ -1,39 +1,76 @@
-body {
+* {
+  box-sizing: border-box;
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  background: #f2f4f7;
 }
 
-.container {
+.card {
+  width: 380px;
+  max-width: 90%;
+  padding: 32px;
   background: white;
-  padding: 30px;
-  width: 320px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
+h1,
 h2 {
-  text-align: center;
+  margin-top: 0;
+}
+
+.subtitle {
+  color: #666;
+}
+
+label {
+  display: block;
+  margin: 14px 0 6px;
+}
+label:hover{
+    background-color: #4834d4;
+  opacity: 0.9;s
 }
 
 input {
   width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
-
+input:hover{
+    background-color: #4834d4;
+  opacity: 0.9;
+}
 button {
   width: 100%;
-  padding: 10px;
-  margin-top: 8px;
+  margin-top: 18px;
+  padding: 12px;
+  border: 0;
+  border-radius: 6px;
+  background: #222;
+  color: white;
   cursor: pointer;
 }
 
-#message {
-  margin-top: 15px;
-  text-align: center;
+button:hover {
+  background-color: #4834d4;
+  opacity: 0.9;
+  
+}
+
+.hidden {
+  display: none;
+}
+
+#message,
+#registerMessage {
+  min-height: 20px;
 }
