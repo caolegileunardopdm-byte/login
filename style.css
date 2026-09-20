@@ -1,106 +1,39 @@
-/* Registration Box */
-.register-box {
-    width: 400px;          /* KEEP YOUR ORIGINAL SIZE */
-    min-height: 500px;     /* KEEP YOUR ORIGINAL SIZE */
-
-    padding: 30px;
-    box-sizing: border-box;
-
-    /* Modern glass style */
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-
-    /* Keep border size the same */
-    border: 2px solid rgba(255, 255, 255, 0.35);
-    border-radius: 20px;
-
-    /* New style */
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.35),
-        inset 0 0 20px rgba(255, 255, 255, 0.05);
-
-    color: white;
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-/* Title */
-.register-box h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: 1px;
+.container {
+  background: white;
+  padding: 30px;
+  width: 320px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Input fields */
-.register-box input {
-    width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 15px;
-
-    box-sizing: border-box;
-
-    background: rgba(255, 255, 255, 0.12);
-    color: white;
-
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-
-    outline: none;
-    transition: 0.3s;
+h2 {
+  text-align: center;
 }
 
-/* Input focus */
-.register-box input:focus {
-    border-color: #ffffff;
-    background: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
 
-/* Placeholder */
-.register-box input::placeholder {
-    color: rgba(255, 255, 255, 0.65);
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  cursor: pointer;
 }
 
-/* Register button */
-.register-box button {
-    width: 100%;
-    padding: 12px;
-
-    border: none;
-    border-radius: 10px;
-
-    background: linear-gradient(135deg, #6a5cff, #8e44ff);
-    color: white;
-
-    font-size: 16px;
-    font-weight: bold;
-
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-/* Button hover */
-.register-box button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(106, 92, 255, 0.4);
-}
-
-/* Login text */
-.register-box p {
-    text-align: center;
-    margin-top: 20px;
-    color: rgba(255, 255, 255, 0.75);
-}
-
-/* Login link */
-.register-box a {
-    color: #a99cff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.register-box a:hover {
-    color: white;
-    text-decoration: underline;
+#message {
+  margin-top: 15px;
+  text-align: center;
 }
