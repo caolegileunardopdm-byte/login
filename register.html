@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="nav-links">
+        <a href="index.html">Home</a> <a href="profile.html">Profile</a>
+        <a href="about.html">About</a>
+        <a href="index.html" class="active">Login</a>
+      </div>
+    </nav>
+    <div class="card">
+      <h2>Register</h2>
+
+      <h2>Create Account</h2>
+      <label>Name</label>
+      <input type="text" id="name" />
+
+      <label>Email</label>
+      <input type="email" id="regEmail" />
+
+      <label>Password</label>
+      <input type="password" id="regPassword" />
+
+      <button type="submit">Register</button>
+      <p id="registerMessage"></p>
+
+      <p>
+        a Already have an account?
+        <a href="index.html">Login</a>
+      </p>
+    </div>
+
+    <script src="register.js"></script>
+  </body>
+</html>
