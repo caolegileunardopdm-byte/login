@@ -1,48 +1,51 @@
 const loginForm = document.getElementById("loginForm");
 const message = document.getElementById("message");
 
-loginForm.addEventListener("submit", function (event) {
+const API_URL = "https://task-db-dtqg.onrender.com/api";
+
+loginForm.addEventListener("submit", async function (event) {
   event.preventDefault();
 
-  // Get login information
   const email = document.getElementById("email").value.trim().toLowerCase();
-
   const password = document.getElementById("password").value;
 
-  // Get registered user
-  const savedUser = localStorage.getItem("taskflowUser");
+  message.style.color = "";
+  message.textContent = "Logging in...";
 
-  // No registered account
-  if (!savedUser) {
-    message.style.color = "red";
+  try {
+    const res = await fetch(`${API_URL}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
 
-    message.textContent = "No account found. Please register first.";
+    const data = await res.json();
 
-    return;
-  }
+    if (!res.ok) {
+      message.style.color = "red";
+      message.textContent = data.message || "Login failed.";
+      return;
+    }
 
-  // Convert saved data to object
-  const user = JSON.parse(savedUser);
-
-  // Check login information
-  if (email === user.email && password === user.password) {
-    // Store login session
+    localStorage.setItem("taskflowToken", data.token);
     localStorage.setItem("taskflowLoggedIn", "true");
-
-    // Save current user
-    localStorage.setItem("taskflowCurrentUser", JSON.stringify(user));
+    localStorage.setItem(
+      "taskflowCurrentUser",
+      JSON.stringify({
+        email: email,
+        name: (data.user && data.user.name) || email.split("@")[0],
+      }),
+    );
 
     message.style.color = "green";
-
     message.textContent = "Login successful! Opening dashboard...";
 
-    // Go to dashboard
     setTimeout(function () {
       window.location.href = "dashboard.html";
     }, 800);
-  } else {
+  } catch (err) {
     message.style.color = "red";
-
-    message.textContent = "Incorrect email or password.";
+    message.textContent = "Cannot reach server. Try again in a moment.";
+    console.error(err);
   }
 });

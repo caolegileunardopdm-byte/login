@@ -1,70 +1,55 @@
 const registerForm = document.getElementById("registerForm");
 const message = document.getElementById("message");
 
-registerForm.addEventListener("submit", function (event) {
+const API_URL = "https://task-db-dtqg.onrender.com/api";
+
+registerForm.addEventListener("submit", async function (event) {
   event.preventDefault();
 
-  // Get form values
   const name = document.getElementById("name").value.trim();
-
   const email = document.getElementById("email").value.trim().toLowerCase();
-
   const password = document.getElementById("password").value;
-
   const confirmPassword = document.getElementById("confirmPassword").value;
 
-  // Check password
   if (password.length < 6) {
     message.style.color = "red";
-
     message.textContent = "Password must contain at least 6 characters.";
-
     return;
   }
 
-  // Check confirmation
   if (password !== confirmPassword) {
     message.style.color = "red";
-
     message.textContent = "Passwords do not match.";
-
     return;
   }
 
-  // Check if an account already exists
-  const existingUser = localStorage.getItem("taskflowUser");
+  message.style.color = "";
+  message.textContent = "Creating account...";
 
-  if (existingUser) {
-    const user = JSON.parse(existingUser);
+  try {
+    const res = await fetch(`${API_URL}/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password }),
+    });
 
-    if (user.email === email) {
+    const data = await res.json();
+
+    if (!res.ok) {
       message.style.color = "red";
-
-      message.textContent = "An account with this email already exists.";
-
+      message.textContent = data.message || "Registration failed.";
       return;
     }
+
+    message.style.color = "green";
+    message.textContent = "Registration successful! Redirecting to login...";
+
+    setTimeout(function () {
+      window.location.href = "login.html";
+    }, 1500);
+  } catch (err) {
+    message.style.color = "red";
+    message.textContent = "Cannot reach server. Try again in a moment.";
+    console.error(err);
   }
-
-  // Create user object
-  const newUser = {
-    name: name,
-
-    email: email,
-
-    password: password,
-  };
-
-  // Save user
-  localStorage.setItem("taskflowUser", JSON.stringify(newUser));
-
-  // Success message
-  message.style.color = "green";
-
-  message.textContent = "Registration successful! Redirecting to login...";
-
-  // Go to login page
-  setTimeout(function () {
-    window.location.href = "login.html";
-  }, 1500);
 });
